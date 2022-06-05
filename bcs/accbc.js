@@ -1,5 +1,5 @@
 const wait = require("node:timers/promises").setTimeout;
-function accbc( token, {ownerID, prefix, mention = true}) {
+function accbc( {token, ownerID, prefix, mention = true}) {
     const Discord = require("discord.js-selfbot");
     const client = new Discord.Client()
 
