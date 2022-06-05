@@ -1,15 +1,15 @@
 {
   "name": "sphinx-bc",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "This is a discord broadcast bot which uses discord bots to fetch every member in the guild and sends them a specific message! , This package also supports selfbot",
-  "main": "testing.js",
+  "main": "index.js",
   "homepage": "https://github.com/ioSphinx/sphinx-bc",
   "repository": {
     "type": "git",
     "url": "https://github.com/ioSphinx/sphinx-bc"
   },
   "scripts": {
-    "dev": "npx tsc index.ts"
+    "dev": "npx index.js"
   },
   "keywords": [
     "discord",
