@@ -6,12 +6,16 @@
 
 ```js
 const sphinx = require("sphinx-bc") // First we require the package
-sphinx.botbc("token", {ownerID: ["OWNER IDS"], prefix: "prefix", embedReply: "This one is optional if you don't put it , it will just throw the default one"}) // First Argument: Your bot token [String], Second Argument: People who will be able to use this bot [Array], Third Argument : The bot prefix
+sphinx.botbc("token", {ownerID: ["OWNER IDS"], prefix: "prefix", embedReply: "", mention: boolean}) 
 ```
+- First Argument: Your bot token [String], Second Argument: People who will be able to use this bot [Array], Third Argument : The bot prefix .
+- The `mention` property defines as weather the member who recieved the message should get pinged or no , default: true
+
 
 # How to use SelfBots Version
 ```js
 const sphinx = require("sphinx-bc");
-sphinx.accbc("token", ["OWNER IDS"], "prefix")
+sphinx.accbc("token", {ownerID: [""], prefix: "", mention: boolean})
 ```
 - NOTE: THE SELFBOT IS NOT COMPLETE YOU WILL FACE SOME TROUBLES
+- THERE IS NO CONFIRMATION ON THE SELFBOT TO AVOID BANS (you will eventually get banned )
