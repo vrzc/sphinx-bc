@@ -1,7 +1,7 @@
 const wait = require("node:timers/promises").setTimeout;
 
-function botbc(token, {ownerID, prefix, embedReply = "This broadcast bot was made by Sphinx#1100 it's not my responsebilty if you use it wrong"}) {
-
+function botbc(token, {ownerID , prefix, embedReply = "This broadcast bot was made by Sphinx#1100 it's not my responsebilty if you use it wrong"}) {
+    
     const Discord = require("discord.js");
     const client = new Discord.Client({
         intents: 32767
@@ -81,7 +81,8 @@ function botbc(token, {ownerID, prefix, embedReply = "This broadcast bot was mad
         }
     })
 
-    client.login(token)
+    client.login(token);
+    
 }
 
 
