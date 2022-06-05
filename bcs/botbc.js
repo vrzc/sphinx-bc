@@ -55,10 +55,9 @@ function botbc({token, ownerID , prefix, embedReply = "This broadcast bot was ma
                         if(m.presence) {
                             wait(5000);
                             m.send(mention ? `${words} \n \n ${m}` : words).then(m => {
-                                console.log(m)
                                 console.log(`Sent to ${m}`)
                             }).catch(m => {
-                                console.log(`Err`)
+                                console.log(`Err, Couldn't send to someone.`)
                             })
                         }
         
