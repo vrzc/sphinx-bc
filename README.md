@@ -6,7 +6,7 @@
 
 ```js
 const sphinx = require("sphinx-bc") // First we require the package
-sphinx.botbc("token", ["FIRST OWNER ID", "SECOND OWNER ID"], "prefix") // First Argument: Your bot token [String], Second Argument: People who will be able to use this bot [Array], Third Argument : The bot prefix
+sphinx.botbc("token", {ownerID: ["OWNER IDS"], prefix: "prefix", embedReply: "This one is optional if you don't put it , it will just throw the default one"}) // First Argument: Your bot token [String], Second Argument: People who will be able to use this bot [Array], Third Argument : The bot prefix
 ```
 
 # How to use SelfBots Version

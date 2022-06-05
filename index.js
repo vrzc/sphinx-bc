@@ -1,6 +1,6 @@
 const wait = require("node:timers/promises").setTimeout;
 
-function botbc(token, ownerID, prefix) {
+function botbc(token, {ownerID, prefix, embedReply = "This broadcast bot was made by Sphinx#1100 it's not my responsebilty if you use it wrong"}) {
 
     const Discord = require("discord.js");
     const client = new Discord.Client({
@@ -45,7 +45,7 @@ function botbc(token, ownerID, prefix) {
             const filter = i => (i.customId === row.components[0].customId && i.user.id === message.author.id) ||
             (i.customId === row.components[1].customId && i.user.id === message.author.id);
             let msg = await message.channel.send({
-                embeds: [new Discord.MessageEmbed().setTitle("Are you sure you want to send this broardCast?").setDescription("This broadcast bot was made by Sphinx#1100 it's not my responsebilty if you use it wrong")],
+                embeds: [new Discord.MessageEmbed().setTitle("Are you sure you want to send this broardCast?").setDescription(embedReply)],
                 components: [row]
             });
             const collector = msg.createMessageComponentCollector({ filter, time: 20000});
@@ -53,11 +53,12 @@ function botbc(token, ownerID, prefix) {
                 if(i.customId === row.components[0].customId) {
                     message.guild.members.cache.filter(m => m.presence?.status !== 'offline').forEach(m => {
                         if(m.presence) {
-                            wait(2000);
+                            wait(5000);
                             m.send(words).then(m => {
-                                console.log(`Sent to ${m}`)
+                                console.log(m.author.username)
+                                console.log(`Sent to ${m.author.username}`)
                             }).catch(m => {
-                                console.log(`Couldn't send to ${m}`)
+                                console.log(`Err`)
                             })
                         }
         
