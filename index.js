@@ -1,4 +1,4 @@
-const {botbc} = require("./bcs/botbc");
+const {BotAccount} = require("./bcs/botbc");
 const {accbc} = require("./bcs/accbc");
 
-module.exports = {accbc, botbc};
+module.exports = {accbc, BotAccount};
