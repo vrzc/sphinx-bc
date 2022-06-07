@@ -19,15 +19,9 @@ sphinx.botbc({
 
 
 # How to use SelfBots Version
-```js
-const sphinx = require("sphinx-bc");
-sphinx.accbc({
-  token: "YourToken",
-  ownerID: ["First Owner ID", "SECOND owner ID"],
-  prefix: "yourPrefix"
-}
-```
+Still in progress
+
 - NOTE: THE SELFBOT IS NOT COMPLETE YOU WILL FACE SOME TROUBLES
 - THERE IS NO CONFIRMATION ON THE SELFBOT TO AVOID BANS (you will eventually get banned )
 
-<embed src="">
+<embed src="./tutorial.mp4">
