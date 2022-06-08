@@ -28,7 +28,7 @@ class BotAccount {
       return process.exit(0);
     }
   
-    if (!this.type || this.type !== this.types) {
+    if (!this.type || this.type !== types) {
       console.error(new Error("Argument 'Types' can only be `all || off` "));
       return process.exit(1);
     }
