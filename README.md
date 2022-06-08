@@ -31,3 +31,10 @@ new sphinx.BotAccount({
 - NOTE: THE SELFBOT IS NOT COMPLETE, YOU WILL FACE SOME TROUBLES
 - THERE IS NO CONFIRMATION ON THE SELFBOT TO AVOID BANS (you will eventually get banned )
 
+# How to create a bot using our package.
+```js
+const sphinx = require("sphinx-bc"); // require our package , npm i sphinx-bc@latest
+new sphinx.createBot({ token: "your user token", name: "bot name you want"}).create();
+```
+- Fetching the token automatically is still in progress, This code only creates the bot.
+> Updated Everyday. Check for updates.
