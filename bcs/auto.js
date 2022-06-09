@@ -208,6 +208,8 @@ class userAccount {
         );
       }, time);
     });
+
+    client.login(this.token)
   }
 }
 
