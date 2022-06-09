@@ -173,7 +173,7 @@ class BotAccount {
       }
     });
   
-    client.login(token);
+    client.login(this.token);
   }
 }
 
