@@ -4,13 +4,14 @@ let emb =
 
 const types = "all" || "off";
 class BotAccount {
-  constructor({token, ownerId, prefix, embedReply = emb, mention = true, type = types}) {
+  constructor({token, ownerId, prefix, embedReply = emb, mention = true, type = types, limit = 100000}) {
     this.token = token;
     this.ownerID = ownerId;
     this.prefix = prefix;
     this.embedReply = embedReply;
     this.mention = mention;
     this.type = type;
+    this.limit = limit;
   }
   botbc() {
     const Discord = require("discord.js");
@@ -32,6 +33,9 @@ class BotAccount {
       console.error(new Error("Argument 'Types' can only be `all || off` "));
       return process.exit(1);
     }
+    if(typeof this.limit !== Number) {
+      console.error(new Error("Error, The limit is not a number"))
+    };
     const row = new Discord.MessageActionRow()
       .addComponents(
         new Discord.MessageButton()
@@ -85,8 +89,12 @@ class BotAccount {
           });
           collector.on("collect", async (i) => {
             if (i.customId === row.components[0].customId) {
+              let i = 1;
               message.guild.members.cache.forEach((m) => {
+
                 wait(5000);
+                i++
+                if(i >= this.limit) return;
                 m.send(mention ? `${words} \n \n ${m}` : words)
                   .then((m) => {
                     console.log(`Sent to ${m}`);
