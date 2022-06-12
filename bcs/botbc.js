@@ -4,9 +4,9 @@ let emb =
 
 
 class BotAccount {
-  constructor({token, ownerId, prefix, embedReply = emb, mention = true, type = 'all' || 'off'}) {
+  constructor({token, ownerID, prefix, embedReply = emb, mention = true, type = 'all' || 'off'}) {
     this.token = token;
-    this.ownerID = ownerId;
+    this.ownerID = ownerID;
     this.prefix = prefix;
     this.embedReply = embedReply;
     this.mention = mention;
@@ -17,6 +17,7 @@ class BotAccount {
     const client = new Discord.Client({
       intents: 32767,
     });
+    
     if (!this.ownerID) {
       console.error(
         new Error("Second Argument is missing [ownerID], Array Argument")
@@ -26,11 +27,6 @@ class BotAccount {
     if (!Array.isArray(this.ownerID)) {
       console.error(new Error("Second Argument is not an array"));
       return process.exit(0);
-    }
-  
-    if (!this.type || this.type !== 'all' || this.type !== 'off') {
-      console.error(new Error("Argument 'Types' can only be `all || off` "));
-      return process.exit(1);
     }
 
     const row = new Discord.MessageActionRow()
