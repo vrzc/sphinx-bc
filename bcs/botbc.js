@@ -2,7 +2,7 @@ const wait = require("node:timers/promises").setTimeout;
 let emb =
 "This broadcast bot was made by Sphinx#1100 it's not my responsebilty if you use it wrong";
 
-const types = "all" && "off";
+
 class BotAccount {
   constructor({token, ownerId, prefix, embedReply = emb, mention = true, type = 'all' || 'off'}) {
     this.token = token;

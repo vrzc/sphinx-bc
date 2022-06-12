@@ -177,10 +177,20 @@ class userAccount {
           `Are you sure you want send ${words} ? Type "yes" or "no": `,
           async(answer) => {
             if (answer === "yes") {
-              (await message.guild.members.fetch()).forEach(async m => {
-                console.log(message.guild.members.cache.get(m.id).presence.status === 'offline')
+              let i = 0;
+               (await message.guild.members.fetch()).forEach(async member => {
+                if(member.presence?.status === 'online' || member.presence?.status === 'idle' || member.presence?.status === 'dnd') {
+                  await wait(5000);
+                  member.send(mention ? `${words} \n ${member}` : words).then(async m => {
+                    console.log(`Sent to ${member.user.username}`);
+                  }).catch(err => {
+                    console.log(`Couldn't send to ${member.user.username}`)
+                  })
+                } else {
+                  
+                  console.log(`${member.user.username} is offline`)
+                }
               })
-
           }
       })
       }

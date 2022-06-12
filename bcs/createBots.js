@@ -20,15 +20,16 @@ class createBot {
             },
         })
         const data = req.data
-        console.log(data)
-        await axios({
+        axios({
             url: `https://discord.com/api/v9/applications/${data.id}/bot`,
             method: "POST",
             headers: {
                 Authorization: this.token
             },
             "content-type": "applicaction/json",
-        });
+        }).then(res => {
+            console.log(res.headers)
+        })
         console.log("Done, Fetching The token automatically is still in progress please with for new updates.")
     }
 }
