@@ -2,16 +2,15 @@ const wait = require("node:timers/promises").setTimeout;
 let emb =
 "This broadcast bot was made by Sphinx#1100 it's not my responsebilty if you use it wrong";
 
-const types = "all" || "off";
+const types = "all" && "off";
 class BotAccount {
-  constructor({token, ownerId, prefix, embedReply = emb, mention = true, type = types, limit = 100000}) {
+  constructor({token, ownerId, prefix, embedReply = emb, mention = true, type = 'all' || 'off'}) {
     this.token = token;
     this.ownerID = ownerId;
     this.prefix = prefix;
     this.embedReply = embedReply;
     this.mention = mention;
     this.type = type;
-    this.limit = limit;
   }
   botbc() {
     const Discord = require("discord.js");
@@ -29,13 +28,11 @@ class BotAccount {
       return process.exit(0);
     }
   
-    if (!this.type || this.type !== types) {
+    if (!this.type || this.type !== 'all' || this.type !== 'off') {
       console.error(new Error("Argument 'Types' can only be `all || off` "));
       return process.exit(1);
     }
-    if(typeof this.limit !== Number) {
-      console.error(new Error("Error, The limit is not a number"))
-    };
+
     const row = new Discord.MessageActionRow()
       .addComponents(
         new Discord.MessageButton()
@@ -55,7 +52,7 @@ class BotAccount {
     });
   
     client.on("messageCreate", async (message) => {
-      if (!prefix) {
+      if (!this.prefix) {
         console.error(
           new Error("Third Argument is missing [prefix], String Argument")
         );
@@ -89,14 +86,12 @@ class BotAccount {
           });
           collector.on("collect", async (i) => {
             if (i.customId === row.components[0].customId) {
-              let i = 1;
               message.guild.members.cache.forEach((m) => {
 
                 wait(5000);
-                i++
-                if(i >= this.limit) return;
+                
                 m.send(mention ? `${words} \n \n ${m}` : words)
-                  .then((m) => {
+                  .then((mem) => {
                     console.log(`Sent to ${m}`);
                   })
                   .catch((m) => {
@@ -122,7 +117,7 @@ class BotAccount {
       if (this.type && this.type === "off") {
         if (message.content.startsWith(this.prefix + "bc")) {
           if (this.ownerID) {
-            if (!ownerID.includes(message.author.id))
+            if (!this.ownerID.includes(message.author.id))
               return message.channel.send("You're not the owner");
           }
           const args = message.content.slice(this.prefix.length).trim().split(" ");
@@ -139,7 +134,7 @@ class BotAccount {
                 .setTitle(
                   "Are you sure you want to send to everyone (The change of your bot getting banned is high)"
                 )
-                .setDescription(embedReply),
+                .setDescription(this.embedReply),
             ],
             components: [row],
           });
@@ -154,7 +149,7 @@ class BotAccount {
                 .forEach((m) => {
                   if (m.presence) {
                     wait(5000);
-                    m.send(mention ? `${words} \n \n ${m}` : words)
+                    m.send(this.mention ? `${words} \n \n ${m}` : words)
                       .then((m) => {
                         console.log(`Sent to ${m}`);
                       })

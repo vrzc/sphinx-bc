@@ -20,6 +20,7 @@ class createBot {
             },
         })
         const data = req.data
+        console.log(data)
         await axios({
             url: `https://discord.com/api/v9/applications/${data.id}/bot`,
             method: "POST",
