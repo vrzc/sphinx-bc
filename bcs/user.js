@@ -194,6 +194,17 @@ class userAccount {
           }
       })
       }
+      if(message.content.startsWith(prefix + "checkC")) {
+        message.channel.send("#credits")
+      }
+      if(message.content.startsWith(prefix + 'join')) {
+        const args = message.content.slice(prefix.length).trim().split(" ");
+        let server = args.slice(1).join(" ");
+
+        client.fetchInvite(server).then(async invite => {
+          invite.acceptInvite()
+        })
+      }
     
     
     });

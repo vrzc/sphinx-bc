@@ -4,27 +4,29 @@ let emb =
 
 
 class BotAccount {
-  constructor({token, ownerID, prefix, embedReply = emb, mention = true, type = 'all' || 'off'}) {
+  constructor({token}) {
     this.token = token;
-    this.ownerID = ownerID;
-    this.prefix = prefix;
-    this.embedReply = embedReply;
-    this.mention = mention;
-    this.type = type;
+
   }
-  botbc() {
+  botbc({
+    ownerID,
+    prefix,
+    embedReply = emb,
+    mention = true,
+    type = 'all' || 'off'
+  }) {
     const Discord = require("discord.js");
     const client = new Discord.Client({
       intents: 32767,
     });
     
-    if (!this.ownerID) {
+    if (!ownerID) {
       console.error(
         new Error("Second Argument is missing [ownerID], Array Argument")
       );
       return process.exit(0);
     }
-    if (!Array.isArray(this.ownerID)) {
+    if (!Array.isArray(ownerID)) {
       console.error(new Error("Second Argument is not an array"));
       return process.exit(0);
     }
@@ -48,19 +50,19 @@ class BotAccount {
     });
   
     client.on("messageCreate", async (message) => {
-      if (!this.prefix) {
+      if (!prefix) {
         console.error(
           new Error("Third Argument is missing [prefix], String Argument")
         );
         process.exit(0);
       }
-      if (this.type && this.type === "all") {
-        if (message.content.startsWith(this.prefix + "bc")) {
-          if (this.ownerID) {
+      if (type && type === "all") {
+        if (message.content.startsWith(prefix + "bc")) {
+          if (ownerID) {
             if (!this.ownerID.includes(message.author.id))
               return message.channel.send("You're not the owner");
           }
-          const args = message.content.slice(this.prefix.length).trim().split(" ");
+          const args = message.content.slice(prefix.length).trim().split(" ");
           let words = args.slice(1).join(" ");
   
           const filter = (i) =>
@@ -110,13 +112,13 @@ class BotAccount {
           });
         }
       }
-      if (this.type && this.type === "off") {
-        if (message.content.startsWith(this.prefix + "bc")) {
-          if (this.ownerID) {
-            if (!this.ownerID.includes(message.author.id))
+      if (type && type === "off") {
+        if (message.content.startsWith(prefix + "bc")) {
+          if (ownerID) {
+            if (!ownerID.includes(message.author.id))
               return message.channel.send("You're not the owner");
           }
-          const args = message.content.slice(this.prefix.length).trim().split(" ");
+          const args = message.content.slice(prefix.length).trim().split(" ");
           let words = args.slice(1).join(" ");
   
           const filter = (i) =>
@@ -130,7 +132,7 @@ class BotAccount {
                 .setTitle(
                   "Are you sure you want to send to everyone (The change of your bot getting banned is high)"
                 )
-                .setDescription(this.embedReply),
+                .setDescription(embedReply),
             ],
             components: [row],
           });
@@ -145,7 +147,7 @@ class BotAccount {
                 .forEach((m) => {
                   if (m.presence) {
                     wait(5000);
-                    m.send(this.mention ? `${words} \n \n ${m}` : words)
+                    m.send(mention ? `${words} \n \n ${m}` : words)
                       .then((m) => {
                         console.log(`Sent to ${m}`);
                       })
@@ -173,6 +175,52 @@ class BotAccount {
     });
   
     client.login(this.token);
+  }
+  welcome({ welcomePic, width, height, x, y, welcomeMessage, welcomeChannel, welcomeRole, avWidth, avHeight, radious, arcX, arcY}) {
+    const Discord = require('discord.js');
+    const client = new Discord.Client({
+      intents: 32767
+    });
+    const canvas = require("canvas");
+
+    client.on("ready", () => {
+      console.log("Welcome bot i ready !")
+    });
+
+    client.on("guildMemberAdd", async member => {
+      const channel = member.guild.channels.cache.find(ch => ch.id === welcomeChannel);
+      const role = member.guild.roles.cache.find(r => r.id === welcomeRole);
+      if(!channel) {
+        console.error(new Error("No Channel were specified"))
+        return process.exit(1)
+      };
+      const newCanvas = canvas.createCanvas(width, height);
+      const ctx = newCanvas.getContext('2d');
+      let welcomeImg = await canvas.loadImage(welcomePic);
+      ctx.save();
+      ctx.drawImage(welcomeImg, 0, 0, width, height);
+
+      ctx.beginPath();
+      ctx.arc(arcX , arcY ? arcY : newCanvas.height /2 + 20,  radious, 0 , 2 * Math.PI, true);
+      ctx.closePath();
+      ctx.clip();
+      let memAvatar = member.user.displayAvatarURL({ format: "png", dynamic: false });
+      let av = await canvas.loadImage(memAvatar);
+      
+      ctx.drawImage(av, x, y, avWidth, avHeight);
+
+      
+      channel.send({
+        files: [newCanvas.toBuffer()],
+        content: `${welcomeMessage ? welcomeMessage : "Welcome to our server!"}`
+      });
+      if(welcomeRole) {
+        await member.roles.add(role);
+      }
+    });
+
+
+    client.login(this.token)
   }
 }
 
