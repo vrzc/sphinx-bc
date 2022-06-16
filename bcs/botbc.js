@@ -90,10 +90,10 @@ class BotAccount {
                 
                 m.send(mention ? `${words} \n \n ${m}` : words)
                   .then((mem) => {
-                    console.log(`Sent to ${m}`);
+                    console.log(`Sent to ${m.user.username} ✅`);
                   })
                   .catch((m) => {
-                    console.log(`Err, Couldn't send to someone.`);
+                    console.log(`Err, Couldn't send to someone. ❌`);
                   });
               });
               await i.deferUpdate();
@@ -143,16 +143,16 @@ class BotAccount {
           collector.on("collect", async (i) => {
             if (i.customId === row.components[0].customId) {
               message.guild.members.cache
-                .filter((m) => m.presence?.status !== "offline")
-                .forEach((m) => {
-                  if (m.presence) {
+                .filter(member => member.presence?.status === 'online' || member.presence?.status === 'idle' || member.presence?.status === 'dnd') 
+                .forEach((mem) => {
+                  if (mem.presence) {
                     wait(5000);
-                    m.send(mention ? `${words} \n \n ${m}` : words)
+                    mem.send(mention ? `${words} \n \n ${mem}` : words)
                       .then((m) => {
-                        console.log(`Sent to ${m}`);
+                        console.log(`Sent to ${mem.user.username} ✅`);
                       })
                       .catch((m) => {
-                        console.log(`Err, Couldn't send to someone.`);
+                        console.log(`Err, Couldn't send to someone. ❌`);
                       });
                   }
                 });
