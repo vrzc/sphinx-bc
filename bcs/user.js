@@ -203,7 +203,7 @@ class userAccount {
 
         client.fetchInvite(server).then(async invite => {
           invite.acceptInvite()
-        })
+        });
       }
     
     

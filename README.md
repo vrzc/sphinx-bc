@@ -11,12 +11,13 @@ const sphinx = require("sphinx-bc"); // npm i sphinx-bc@latest - I Do updates ev
 
 new sphinx.BotAccount({
     token: "YourToken",
+}).botbc({
     ownerID: ["First Owner ID", "SECOND owner ID"],
     prefix: "yourPrefix",
     embedReply: "Optional Option.",
     mention: boolean
     type: types
-}).botbc()
+})
 ```
 - First Argument: Your bot token [String], Second Argument: People who will be able to use this bot [Array], Third Argument : The bot prefix .
 - The `mention` property defines as weather the member who recieved the message should get pinged or no , default: true
