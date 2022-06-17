@@ -59,7 +59,7 @@ class BotAccount {
       if (type && type === "all") {
         if (message.content.startsWith(prefix + "bc")) {
           if (ownerID) {
-            if (!this.ownerID.includes(message.author.id))
+            if (!ownerID.includes(message.author.id))
               return message.channel.send("You're not the owner");
           }
           const args = message.content.slice(prefix.length).trim().split(" ");
