@@ -1,6 +1,6 @@
 const wait = require("node:timers/promises").setTimeout;
 let emb =
-  "This broadcast bot was made by Sphinx#1100 it's not my responsebilty if you use it wrong";
+  "This broadcast bot was made by Sphinx#1100 it's not my responseibility if you use it wrong";
 
 class BotAccount {
   constructor({ token }) {
