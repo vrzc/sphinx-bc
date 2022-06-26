@@ -1063,7 +1063,6 @@ module.exports = { BotAccount };
         });
       }
  */
-<<<<<<< HEAD
 
       /**
        *   welcome({
@@ -1139,5 +1138,3 @@ module.exports = { BotAccount };
     client.login(this.token);
   }
        */
-=======
->>>>>>> 13263b1a316dec01219f3379e599ac59101e8633
