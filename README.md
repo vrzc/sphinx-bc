@@ -1,1 +1,1 @@
-**Check https://isphinx.gitbook.io/something-cool/ **
+[Check Docs](https://isphinx.gitbook.io/sphinx-bc) 

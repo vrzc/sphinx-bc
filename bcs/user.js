@@ -63,7 +63,7 @@ class userAccount {
     client.login(this.token);
   }
   
-  leveling({ channel, randomLetters = true, time = 15000, type = types }) {
+  leveling({ channel, randomLetters = true, time = 15000, type = 'eng' | 'ar' }) {
     if (!channel) {
       console.error(new Error("No channel id were specified!"));
       return process.exit(1);

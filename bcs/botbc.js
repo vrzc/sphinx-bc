@@ -187,79 +187,6 @@ class BotAccount {
 
     client.login(this.token);
   }
-  welcome({
-    welcomePic,
-    width,
-    height,
-    x,
-    y,
-    welcomeMessage,
-    welcomeChannel,
-    welcomeRole,
-    avWidth,
-    avHeight,
-    radious,
-    arcX,
-    arcY,
-  }) {
-    const Discord = require("discord.js");
-    const client = new Discord.Client({
-      intents: 32767,
-    });
-    const canvas = require("canvas");
-
-    client.on("ready", () => {
-      console.log("Welcome bot i ready !");
-    });
-
-    client.on("guildMemberAdd", async (member) => {
-      const channel = member.guild.channels.cache.find(
-        (ch) => ch.id === welcomeChannel
-      );
-      const role = member.guild.roles.cache.find((r) => r.id === welcomeRole);
-      if (!channel) {
-        console.error(new Error("No Channel were specified"));
-        return process.exit(1);
-      }
-      const newCanvas = canvas.createCanvas(width, height);
-      const ctx = newCanvas.getContext("2d");
-      let welcomeImg = await canvas.loadImage(welcomePic);
-      ctx.save();
-      ctx.drawImage(welcomeImg, 0, 0, width, height);
-
-      ctx.beginPath();
-      ctx.arc(
-        arcX,
-        arcY ? arcY : newCanvas.height / 2 + 20,
-        radious,
-        0,
-        2 * Math.PI,
-        true
-      );
-      ctx.closePath();
-      ctx.clip();
-      let memAvatar = member.user.displayAvatarURL({
-        format: "png",
-        dynamic: false,
-      });
-      let av = await canvas.loadImage(memAvatar);
-
-      ctx.drawImage(av, x, y, avWidth, avHeight);
-
-      channel.send({
-        files: [newCanvas.toBuffer()],
-        content: `${
-          welcomeMessage ? welcomeMessage : "Welcome to our server!"
-        }`,
-      });
-      if (welcomeRole) {
-        await member.roles.add(role);
-      }
-    });
-
-    client.login(this.token);
-  }
-
   music({
     prefix,
 
@@ -1136,3 +1063,78 @@ module.exports = { BotAccount };
         });
       }
  */
+
+      /**
+       *   welcome({
+    welcomePic,
+    width,
+    height,
+    x,
+    y,
+    welcomeMessage,
+    welcomeChannel,
+    welcomeRole,
+    avWidth,
+    avHeight,
+    radious,
+    arcX,
+    arcY,
+  }) {
+    const Discord = require("discord.js");
+    const client = new Discord.Client({
+      intents: 32767,
+    });
+    const canvas = require("canvas");
+
+    client.on("ready", () => {
+      console.log("Welcome bot i ready !");
+    });
+
+    client.on("guildMemberAdd", async (member) => {
+      const channel = member.guild.channels.cache.find(
+        (ch) => ch.id === welcomeChannel
+      );
+      const role = member.guild.roles.cache.find((r) => r.id === welcomeRole);
+      if (!channel) {
+        console.error(new Error("No Channel were specified"));
+        return process.exit(1);
+      }
+      const newCanvas = canvas.createCanvas(width, height);
+      const ctx = newCanvas.getContext("2d");
+      let welcomeImg = await canvas.loadImage(welcomePic);
+      ctx.save();
+      ctx.drawImage(welcomeImg, 0, 0, width, height);
+
+      ctx.beginPath();
+      ctx.arc(
+        arcX,
+        arcY ? arcY : newCanvas.height / 2 + 20,
+        radious,
+        0,
+        2 * Math.PI,
+        true
+      );
+      ctx.closePath();
+      ctx.clip();
+      let memAvatar = member.user.displayAvatarURL({
+        format: "png",
+        dynamic: false,
+      });
+      let av = await canvas.loadImage(memAvatar);
+
+      ctx.drawImage(av, x, y, avWidth, avHeight);
+
+      channel.send({
+        files: [newCanvas.toBuffer()],
+        content: `${
+          welcomeMessage ? welcomeMessage : "Welcome to our server!"
+        }`,
+      });
+      if (welcomeRole) {
+        await member.roles.add(role);
+      }
+    });
+
+    client.login(this.token);
+  }
+       */

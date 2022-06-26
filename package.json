@@ -1,40 +1,32 @@
 {
   "name": "sphinx-bc",
-  "version": "5.0.1",
-  "description": "This is a discord broadcast bot which uses discord bots to fetch every member in the guild and sends them a specific message! , This package also supports selfbot",
+  "version": "6.0.0--dev",
+  "description": "[Check Docs](https://isphinx.gitbook.io/sphinx-bc)",
   "main": "index.js",
-  "homepage": "https://isphinx.gitbook.io/something-cool/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ioSphinx/sphinx-bc"
+  "bin": {
+    "sphinx-bc": "bin/cli.js"
   },
   "scripts": {
-    "dev": "npx index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "discord",
-    "bc",
-    "broadcast",
-    "selfbot"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ioSphinx/sphinx-bc.git"
+  },
+  "keywords": [],
   "author": "Sphinx",
   "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ioSphinx/sphinx-bc/issues"
+  },
+  "homepage": "https://github.com/ioSphinx/sphinx-bc#readme",
   "dependencies": {
     "@discordjs/builders": "^0.15.0",
-    "@discordjs/opus": "^0.7.0",
-    "@discordjs/voice": "^0.10.0",
     "axios": "^0.27.2",
-    "canvas": "^2.9.1",
-    "discord-api-types": "^0.33.3",
-    "discord.js": "^13.7.0",
-    "discord.js-selfbot-v13": "^2.2.0",
+    "discord.js": "^13.8.1",
+    "discord.js-selfbot-v13": "^2.3.6",
     "distube": "^3.3.4",
-    "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^4.4.1",
-    "jimp": "^0.16.1",
-    "libsodium-wrappers": "^0.7.10",
-    "prompt": "^1.3.0",
-    "readline": "^1.3.0",
-    "sphinx-bc": "^1.0.1"
+    "fs": "^0.0.1-security",
+    "readline": "^1.3.0"
   }
 }
