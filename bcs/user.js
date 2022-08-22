@@ -16,7 +16,7 @@ class userAccount {
     }
 
     const Discord = require("discord.js-selfbot-v13");
-    const client = new Discord.Client({ intents: 32767 });
+    const client = new Discord.Client({ intents: 32767, checkUpdate: false });
 
     client.on("ready", () => {
       console.log("On for autoreaction");
@@ -60,8 +60,10 @@ class userAccount {
         });
       }
     });
+
     client.login(this.token);
   }
+  
   
   leveling({ channel, randomLetters = true, time = 15000, type = 'eng' | 'ar' }) {
     if (!channel) {
@@ -83,7 +85,7 @@ class userAccount {
         return result;
       }
       const Discord = require("discord.js-selfbot-v13");
-      const client = new Discord.Client();
+      const client = new Discord.Client({ checkUpdate: false });
       let arrayOfMostUsedWords = require("../lanuages.json").eng;
       client.on("ready", async() => {
         console.log("Leveling class is ready!");
@@ -136,7 +138,7 @@ class userAccount {
   }
   bc({ownerID = [], prefix, mention = true}) {
     const Discord = require("discord.js-selfbot-v13");
-    const client = new Discord.Client({ intents: 32767});
+    const client = new Discord.Client({ intents: 32767, checkUpdate: false});
   
     client.on("ready", () => {
       console.log(`BroadCast is on for ${client.user.username}`);
@@ -212,5 +214,6 @@ class userAccount {
     client.login(this.token);
   }
 }
+
 
 module.exports = { userAccount };

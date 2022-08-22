@@ -9,7 +9,7 @@ class createBot {
 
         const axios = require("axios")
         const req = await axios({
-            url: "https://discord.com/api/v9/applications",
+            url: "https://discord.com/api/v10/applications",
             method: "POST",
             headers: {
                 Authorization: this.token
@@ -19,7 +19,7 @@ class createBot {
                 name: this.name
             },
         })
-        const data = req.data
+        const data = req.data;
         axios({
             url: `https://discord.com/api/v9/applications/${data.id}/bot`,
             method: "POST",
@@ -28,9 +28,22 @@ class createBot {
             },
             "content-type": "applicaction/json",
         }).then(res => {
-            console.log(res.headers)
-        })
-        console.log("Done, Fetching The token automatically is still in progress please with for new updates.")
+            axios({
+                url: `https://discord.com/api/v9/applications/${data.id}/bot`,
+                method: 'POST',
+                headers: {
+                    Authorization: this.token
+                },
+                "content-type": "applicaction/json",
+            }).then(() => {
+                axios.post(`https://discord.com/api/v9/applications/${data.id}/bot/reset`, {}, {headers: {Authorization: this.token}}).then(res => {
+                    console.log(res.data)
+                })
+            })
+            // console.log(res)
+        });
+
+        
     }
 }
 

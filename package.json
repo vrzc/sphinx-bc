@@ -1,6 +1,6 @@
 {
   "name": "sphinx-bc",
-  "version": "6.0.0--dev",
+  "version": "6.0.4--dev",
   "description": "[Check Docs](https://isphinx.gitbook.io/sphinx-bc)",
   "main": "index.js",
   "bin": {
@@ -23,10 +23,14 @@
   "dependencies": {
     "@discordjs/builders": "^0.15.0",
     "axios": "^0.27.2",
+    "better-sqlite3": "^7.5.3",
+    "cli-table": "^0.3.11",
     "discord.js": "^13.8.1",
     "discord.js-selfbot-v13": "^2.3.6",
     "distube": "^3.3.4",
     "fs": "^0.0.1-security",
+    "ms": "^2.1.3",
+    "quick.db": "^9.0.5",
     "readline": "^1.3.0"
   }
 }

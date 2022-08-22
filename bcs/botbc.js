@@ -1,4 +1,6 @@
 const wait = require("node:timers/promises").setTimeout;
+const ms = require("ms");
+
 let emb =
   "This broadcast bot was made by Sphinx#1100 it's not my responseibility if you use it wrong";
 
@@ -92,6 +94,7 @@ class BotAccount {
                   .catch((m) => {
                     console.log(`Err, Couldn't send to someone. ❌`);
                   });
+                  wait(5000);
               });
               await i.deferUpdate();
               await wait(1000);
@@ -161,6 +164,7 @@ class BotAccount {
                       .catch((m) => {
                         console.log(`Err, Couldn't send to someone. ❌`);
                       });
+                      wait(5000);
                   }
                 });
               await i.deferUpdate();
